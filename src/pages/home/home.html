@@ -21,5 +21,12 @@
         <h5 *ngIf="priceWithIVA" style="color: var(--ion-color-light); font-size: 8rem;">{{priceWithIVA}}</h5>
     </ion-col>
   </ion-row>
-
+  <ion-searchbar style="color: white;" placeholder="Valor en ARS" 
+  (keyup.enter)="calculatePriceARS($event.target.value)"></ion-searchbar>
+  <ion-row>
+    <ion-col text-center>
+        <label *ngIf="priceARS" for="">Precio en ARS con 30%</label>
+        <h4 *ngIf="priceARS" style="color: var(--ion-color-light); font-size: 8rem;">{{priceARS}}</h4>
+    </ion-col>
+  </ion-row>
 </ion-content>

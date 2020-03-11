@@ -64,9 +64,13 @@ var HomePage = /** @class */ (function () {
         this.priceWithIVA = (priceNoIva + (30 * priceNoIva) / 100).toFixed(2);
         console.log(input, value, this.priceBeforeIva, this.priceWithIVA);
     };
+    HomePage.prototype.calculatePriceARS = function (input) {
+        var value = parseFloat(input);
+        this.priceARS = (value + (30 * value) / 100).toFixed(2);
+    };
     HomePage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-home',template:/*ion-inline-start:"/Users/diproach1/diproach/projects/misael/dollar30/tests-ionic3/src/pages/home/home.html"*/'<ion-header>\n  <ion-navbar>\n    <ion-title>\n      Calculadora de dolar + 30% \n    </ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content padding>\n  <ion-searchbar style="color: white;" placeholder="Valor en USD" \n  (keyup.enter)="calculatePrice($event.target.value)"></ion-searchbar>\n  <ion-row>\n    <ion-col text-center>\n        <label *ngIf="priceWithIVA" for="">Precio SIN IVA</label>\n        <h4 *ngIf="priceBeforeIva" style="color: var(--ion-color-light); font-size: 8rem;">{{priceBeforeIva}}</h4>\n    </ion-col>\n  </ion-row>\n  <ion-row>\n    <ion-col text-center>\n        <label *ngIf="priceWithIVA" for="">Precio CON IVA</label>\n        <h5 *ngIf="priceWithIVA" style="color: var(--ion-color-light); font-size: 8rem;">{{priceWithIVA}}</h5>\n    </ion-col>\n  </ion-row>\n\n</ion-content>'/*ion-inline-end:"/Users/diproach1/diproach/projects/misael/dollar30/tests-ionic3/src/pages/home/home.html"*/
+            selector: 'page-home',template:/*ion-inline-start:"/Users/diproach1/diproach/projects/misael/dollar30/src/pages/home/home.html"*/'<ion-header>\n  <ion-navbar>\n    <ion-title>\n      Calculadora de dolar + 30% \n    </ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content padding>\n  <ion-searchbar style="color: white;" placeholder="Valor en USD" \n  (keyup.enter)="calculatePrice($event.target.value)"></ion-searchbar>\n  <ion-row>\n    <ion-col text-center>\n        <label *ngIf="priceWithIVA" for="">Precio SIN IVA</label>\n        <h4 *ngIf="priceBeforeIva" style="color: var(--ion-color-light); font-size: 8rem;">{{priceBeforeIva}}</h4>\n    </ion-col>\n  </ion-row>\n  <ion-row>\n    <ion-col text-center>\n        <label *ngIf="priceWithIVA" for="">Precio CON IVA</label>\n        <h5 *ngIf="priceWithIVA" style="color: var(--ion-color-light); font-size: 8rem;">{{priceWithIVA}}</h5>\n    </ion-col>\n  </ion-row>\n  <ion-searchbar style="color: white;" placeholder="Valor en ARS" \n  (keyup.enter)="calculatePriceARS($event.target.value)"></ion-searchbar>\n  <ion-row>\n    <ion-col text-center>\n        <label *ngIf="priceARS" for="">Precio en ARS con 30%</label>\n        <h4 *ngIf="priceARS" style="color: var(--ion-color-light); font-size: 8rem;">{{priceARS}}</h4>\n    </ion-col>\n  </ion-row>\n</ion-content>'/*ion-inline-end:"/Users/diproach1/diproach/projects/misael/dollar30/src/pages/home/home.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* NavController */]])
     ], HomePage);
@@ -191,7 +195,7 @@ var MyApp = /** @class */ (function () {
         });
     }
     MyApp = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({template:/*ion-inline-start:"/Users/diproach1/diproach/projects/misael/dollar30/tests-ionic3/src/app/app.html"*/'<ion-nav [root]="rootPage"></ion-nav>\n'/*ion-inline-end:"/Users/diproach1/diproach/projects/misael/dollar30/tests-ionic3/src/app/app.html"*/
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({template:/*ion-inline-start:"/Users/diproach1/diproach/projects/misael/dollar30/src/app/app.html"*/'<ion-nav [root]="rootPage"></ion-nav>\n'/*ion-inline-end:"/Users/diproach1/diproach/projects/misael/dollar30/src/app/app.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* Platform */], __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */], __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */]])
     ], MyApp);
