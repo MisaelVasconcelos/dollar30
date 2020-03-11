@@ -1,0 +1,25 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Calculadora de dolar + 30% 
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-searchbar style="color: white;" placeholder="Valor en USD" 
+  (keyup.enter)="calculatePrice($event.target.value)"></ion-searchbar>
+  <ion-row>
+    <ion-col text-center>
+        <label *ngIf="priceWithIVA" for="">Precio SIN IVA</label>
+        <h4 *ngIf="priceBeforeIva" style="color: var(--ion-color-light); font-size: 8rem;">{{priceBeforeIva}}</h4>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col text-center>
+        <label *ngIf="priceWithIVA" for="">Precio CON IVA</label>
+        <h5 *ngIf="priceWithIVA" style="color: var(--ion-color-light); font-size: 8rem;">{{priceWithIVA}}</h5>
+    </ion-col>
+  </ion-row>
+
+</ion-content>
