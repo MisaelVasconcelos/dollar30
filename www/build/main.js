@@ -1,6 +1,6 @@
 webpackJsonp([0],{
 
-/***/ 109:
+/***/ 111:
 /***/ (function(module, exports) {
 
 function webpackEmptyAsyncContext(req) {
@@ -13,11 +13,11 @@ function webpackEmptyAsyncContext(req) {
 webpackEmptyAsyncContext.keys = function() { return []; };
 webpackEmptyAsyncContext.resolve = webpackEmptyAsyncContext;
 module.exports = webpackEmptyAsyncContext;
-webpackEmptyAsyncContext.id = 109;
+webpackEmptyAsyncContext.id = 111;
 
 /***/ }),
 
-/***/ 150:
+/***/ 153:
 /***/ (function(module, exports) {
 
 function webpackEmptyAsyncContext(req) {
@@ -30,11 +30,11 @@ function webpackEmptyAsyncContext(req) {
 webpackEmptyAsyncContext.keys = function() { return []; };
 webpackEmptyAsyncContext.resolve = webpackEmptyAsyncContext;
 module.exports = webpackEmptyAsyncContext;
-webpackEmptyAsyncContext.id = 150;
+webpackEmptyAsyncContext.id = 153;
 
 /***/ }),
 
-/***/ 193:
+/***/ 196:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -59,35 +59,49 @@ var HomePage = /** @class */ (function () {
     HomePage.prototype.calculatePrice = function (value) {
         var dolar = 62.68;
         var input = parseFloat(value);
-        this.priceBeforeIva = (input * dolar).toFixed(2);
-        var priceNoIva = input * dolar;
-        this.priceWithIVA = (priceNoIva + (30 * priceNoIva) / 100).toFixed(2);
+        if (isNaN(input)) {
+            this.priceWithIVA = null;
+            this.priceBeforeIva = null;
+            console.log("input NaN");
+        }
+        else {
+            var add30 = input * dolar;
+            this.priceBeforeIva = (input * dolar).toFixed(2);
+            this.priceWithIVA = (add30 + (30 * add30) / 100).toFixed(2);
+        }
         console.log(input, value, this.priceBeforeIva, this.priceWithIVA);
     };
     HomePage.prototype.calculatePriceARS = function (input) {
         var value = parseFloat(input);
-        this.priceARS = (value + (30 * value) / 100).toFixed(2);
+        if (isNaN(value)) {
+            this.priceARS = null;
+        }
+        else {
+            this.priceARS = (value + (30 * value) / 100).toFixed(2);
+        }
     };
     HomePage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-home',template:/*ion-inline-start:"/Users/diproach1/diproach/projects/misael/dollar30/src/pages/home/home.html"*/'<ion-header>\n  <ion-navbar>\n    <ion-title>\n      Calculadora de dolar + 30% \n    </ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content padding>\n  <ion-searchbar style="color: white;" placeholder="Valor en USD" \n  (keyup.enter)="calculatePrice($event.target.value)"></ion-searchbar>\n  <ion-row>\n    <ion-col text-center>\n        <label *ngIf="priceWithIVA" for="">Precio SIN IVA</label>\n        <h4 *ngIf="priceBeforeIva" style="color: var(--ion-color-light); font-size: 8rem;">{{priceBeforeIva}}</h4>\n    </ion-col>\n  </ion-row>\n  <ion-row>\n    <ion-col text-center>\n        <label *ngIf="priceWithIVA" for="">Precio CON IVA</label>\n        <h5 *ngIf="priceWithIVA" style="color: var(--ion-color-light); font-size: 8rem;">{{priceWithIVA}}</h5>\n    </ion-col>\n  </ion-row>\n  <ion-searchbar style="color: white;" placeholder="Valor en ARS" \n  (keyup.enter)="calculatePriceARS($event.target.value)"></ion-searchbar>\n  <ion-row>\n    <ion-col text-center>\n        <label *ngIf="priceARS" for="">Precio en ARS con 30%</label>\n        <h4 *ngIf="priceARS" style="color: var(--ion-color-light); font-size: 8rem;">{{priceARS}}</h4>\n    </ion-col>\n  </ion-row>\n</ion-content>'/*ion-inline-end:"/Users/diproach1/diproach/projects/misael/dollar30/src/pages/home/home.html"*/
+            selector: 'page-home',template:/*ion-inline-start:"/Users/diproach1/diproach/projects/misael/dollar30/src/pages/home/home.html"*/'<ion-header>\n  <ion-navbar>\n    <ion-title>\n      Calculadora de dolar + 30% \n    </ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content padding>\n  <ion-searchbar inputmode="numeric" style="color: white;" placeholder="Valor en USD" \n  (keyup.enter)="calculatePrice($event.target.value)"></ion-searchbar>\n  <ion-row>\n    <ion-col text-center>\n        <label *ngIf="priceWithIVA" for="">Precio SIN IVA</label>\n        <h4 *ngIf="priceBeforeIva" style="color: var(--ion-color-light); font-size: 8rem;">{{priceBeforeIva}}</h4>\n    </ion-col>\n  </ion-row>\n  <ion-row>\n    <ion-col text-center>\n        <label *ngIf="priceWithIVA" for="">Precio CON IVA</label>\n        <h5 *ngIf="priceWithIVA" style="color: var(--ion-color-light); font-size: 8rem;">{{priceWithIVA}}</h5>\n    </ion-col>\n  </ion-row>\n  <ion-searchbar style="color: white;" placeholder="Valor en ARS" \n  (keyup.enter)="calculatePriceARS($event.target.value)"></ion-searchbar>\n  <ion-row>\n    <ion-col text-center>\n        <label *ngIf="priceARS" for="">Precio en ARS con 30%</label>\n        <h4 *ngIf="priceARS" style="color: var(--ion-color-light); font-size: 8rem;">{{priceARS}}</h4>\n    </ion-col>\n  </ion-row>\n</ion-content>'/*ion-inline-end:"/Users/diproach1/diproach/projects/misael/dollar30/src/pages/home/home.html"*/,
+            providers: []
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* NavController */]])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* NavController */]) === "function" && _a || Object])
     ], HomePage);
     return HomePage;
+    var _a;
 }());
 
 //# sourceMappingURL=home.js.map
 
 /***/ }),
 
-/***/ 194:
+/***/ 197:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__ = __webpack_require__(195);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_module__ = __webpack_require__(217);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__ = __webpack_require__(198);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_module__ = __webpack_require__(218);
 
 
 Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* platformBrowserDynamic */])().bootstrapModule(__WEBPACK_IMPORTED_MODULE_1__app_module__["a" /* AppModule */]);
@@ -95,7 +109,7 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 
 /***/ }),
 
-/***/ 217:
+/***/ 218:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -103,18 +117,20 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__ = __webpack_require__(30);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(55);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(190);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_status_bar__ = __webpack_require__(192);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(193);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_status_bar__ = __webpack_require__(195);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_in_app_browser__ = __webpack_require__(267);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__app_component__ = __webpack_require__(268);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_home_home__ = __webpack_require__(193);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_home_home__ = __webpack_require__(196);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ionic_native_http__ = __webpack_require__(269);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__angular_common_http__ = __webpack_require__(270);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -137,7 +153,8 @@ var AppModule = /** @class */ (function () {
                 __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["a" /* BrowserModule */],
                 __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["c" /* IonicModule */].forRoot(__WEBPACK_IMPORTED_MODULE_6__app_component__["a" /* MyApp */], {}, {
                     links: []
-                })
+                }),
+                __WEBPACK_IMPORTED_MODULE_9__angular_common_http__["a" /* HttpClientModule */],
             ],
             bootstrap: [__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["a" /* IonicApp */]],
             entryComponents: [
@@ -149,7 +166,7 @@ var AppModule = /** @class */ (function () {
                 __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */],
                 __WEBPACK_IMPORTED_MODULE_5__ionic_native_in_app_browser__["a" /* InAppBrowser */],
                 __WEBPACK_IMPORTED_MODULE_8__ionic_native_http__["a" /* HTTP */],
-                { provide: __WEBPACK_IMPORTED_MODULE_1__angular_core__["u" /* ErrorHandler */], useClass: __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["b" /* IonicErrorHandler */] }
+                { provide: __WEBPACK_IMPORTED_MODULE_1__angular_core__["u" /* ErrorHandler */], useClass: __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["b" /* IonicErrorHandler */] },
             ]
         })
     ], AppModule);
@@ -167,9 +184,9 @@ var AppModule = /** @class */ (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MyApp; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(55);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__ = __webpack_require__(192);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(190);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_home_home__ = __webpack_require__(193);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__ = __webpack_require__(195);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(193);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_home_home__ = __webpack_require__(196);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -206,5 +223,5 @@ var MyApp = /** @class */ (function () {
 
 /***/ })
 
-},[194]);
+},[197]);
 //# sourceMappingURL=main.js.map
