@@ -1,3 +1,42 @@
 page-home {
+  .toolbar-md {
+    padding: 0px;
+    min-height: 56px;
+  }
 
+  .toolbar-background-md {
+    border-color: #b2b2b2;
+    background: rgb(28, 45, 14);
+  }
+
+  .content {
+    background-image: url("../assets/imgs/wallpaper.jpg");
+    object-fit: cover;
+
+    .card-md {
+      margin: 10px;
+      border-radius: 10px;
+      width: calc(100% - 20px);
+      font-size: 1.4rem;
+      background: rgba(240, 238, 238, 0.932);
+      -webkit-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2),
+        0 1px 5px 0 rgba(0, 0, 0, 0.12);
+      box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+    }
+
+    .class-ros {
+        color: rgb(31, 126, 31); 
+        font-size: 5rem;
+    }
+  }
+
+  .header-img-container {
+    align-items: center;
+    display: flex;
+  }
+
+  .input-money {
+    color: black;
+    background-color: white;
+  }
 }

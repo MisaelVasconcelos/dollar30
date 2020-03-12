@@ -1,32 +1,82 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>
-      Calculadora de dolar + 30% 
-    </ion-title>
+    <ion-toolbar>
+      <ion-row>
+        <ion-col col-5>
+        </ion-col>
+        <ion-col col-2 text-center class="header-img-container">
+          <img (click)="weedToast('droguita rica rica')" src="../assets/imgs/mickey-joint.png">
+        </ion-col>
+        <ion-col col-5>
+          <ion-buttons end>
+            <button ion-button icon-only (click)="setDolarValue()">
+              <ion-icon color="light" name="settings"></ion-icon>
+            </button>
+          </ion-buttons>
+        </ion-col>
+      </ion-row>
+    </ion-toolbar>
   </ion-navbar>
 </ion-header>
 
+<!-- SIN IVA -->
 <ion-content padding>
-  <ion-searchbar inputmode="numeric" style="color: white;" placeholder="Valor en USD" 
-  (keyup.enter)="calculatePrice($event.target.value)"></ion-searchbar>
-  <ion-row>
-    <ion-col text-center>
-        <label *ngIf="priceWithIVA" for="">Precio SIN IVA</label>
-        <h4 *ngIf="priceBeforeIva" style="color: var(--ion-color-light); font-size: 8rem;">{{priceBeforeIva}}</h4>
-    </ion-col>
-  </ion-row>
-  <ion-row>
-    <ion-col text-center>
-        <label *ngIf="priceWithIVA" for="">Precio CON IVA</label>
-        <h5 *ngIf="priceWithIVA" style="color: var(--ion-color-light); font-size: 8rem;">{{priceWithIVA}}</h5>
-    </ion-col>
-  </ion-row>
-  <ion-searchbar style="color: white;" placeholder="Valor en ARS" 
-  (keyup.enter)="calculatePriceARS($event.target.value)"></ion-searchbar>
-  <ion-row>
-    <ion-col text-center>
-        <label *ngIf="priceARS" for="">Precio en ARS con 30%</label>
-        <h4 *ngIf="priceARS" style="color: var(--ion-color-light); font-size: 8rem;">{{priceARS}}</h4>
-    </ion-col>
-  </ion-row>
+  <ion-card  >
+    <ion-card-header text-center>
+      <h2 *ngIf="!priceWithIVA" style="font-weight: bold;">Dolar sin IVA</h2>  
+      <h2  *ngIf="priceWithIVA" style="font-weight: bold;">NO IVA</h2>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-row>
+        <ion-col text-center>
+          <h4 *ngIf="!priceBeforeIva" class="class-ros">$ 0.00</h4>
+            <h4 *ngIf="priceBeforeIva" class="class-ros">$ {{priceBeforeIva}}</h4>
+        </ion-col>
+      </ion-row>
+    </ion-card-content>
+  </ion-card>
+
+<!-- CON IVA -->
+  <ion-card>
+    <ion-card-header text-center>
+      <h2 *ngIf="!priceWithIVA" style="font-weight: bold;">Dolar con IVA</h2>
+      <h2 *ngIf="priceWithIVA" style="font-weight: bold;">F*CKING IVA</h2>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-row>
+        <ion-col text-center>
+          <h5 *ngIf="!priceWithIVA" class="class-ros">$ 0.00</h5>
+          <h5 *ngIf="priceWithIVA" class="class-ros">$ {{priceWithIVA}}</h5>
+        </ion-col>
+      </ion-row>
+    </ion-card-content>
+  </ion-card>
+
+<!-- PESOS -->
+
+
+  <ion-card>
+    <ion-card-header (click)="hideorshow()" [hidden]="hidden" text-center>
+      <h2 *ngIf="!priceARS" style="font-weight: bold;">Pesos con IVA</h2>
+      <h2 *ngIf="priceARS" style="font-weight: bold;">Pesos con IVA</h2>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-row>
+        <ion-col text-center>
+          <h5 *ngIf="!priceARS" class="class-ros">$ 0.00</h5>
+          <h5 *ngIf="priceARS" class="class-ros">$ {{priceARS}}</h5>
+        </ion-col>
+      </ion-row>
+    </ion-card-content>
+  </ion-card>
 </ion-content>
+
+<ion-footer padding class="class-footer" no-border>
+  <ion-item style="border-radius: 30px;">
+    <ion-input class="input-money" type="number" placeholder="Valor en USD" (keyup.enter)="calculatePrice($event.target.value)">
+    </ion-input>
+    <ion-icon name="logo-usd" style="color: darkolivegreen;" item-left></ion-icon>
+
+  </ion-item>
+  <!-- <button *ngIf="!paymentMethodSelected" ion-button block disabled color="secondary" (click)="goToCongrats()">Confirmar</button> -->
+</ion-footer>

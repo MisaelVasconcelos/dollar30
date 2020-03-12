@@ -53,11 +53,20 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 var HomePage = /** @class */ (function () {
-    function HomePage(navCtrl) {
+    function HomePage(navCtrl, toastCtrl) {
         this.navCtrl = navCtrl;
+        this.toastCtrl = toastCtrl;
+        this.dolar = 62.58;
     }
+    HomePage.prototype.hideorshow = function () {
+        if (this.hidden == false) {
+            this.hidden = true;
+        }
+        else if (this.hidden == true) {
+            this.hidden = false;
+        }
+    };
     HomePage.prototype.calculatePrice = function (value) {
-        var dolar = 62.68;
         var input = parseFloat(value);
         if (isNaN(input)) {
             this.priceWithIVA = null;
@@ -65,30 +74,42 @@ var HomePage = /** @class */ (function () {
             console.log("input NaN");
         }
         else {
-            var add30 = input * dolar;
-            this.priceBeforeIva = (input * dolar).toFixed(2);
+            var add30 = input * this.dolar;
+            this.priceBeforeIva = (input * this.dolar).toFixed(2);
             this.priceWithIVA = (add30 + (30 * add30) / 100).toFixed(2);
+            this.priceARS = (input + (30 * input) / 100).toFixed(2);
+            if (this.priceBeforeIva == 600) {
+                this.weedToast("Bien piola para el g rey ");
+            }
+            console.log(input, value, this.priceBeforeIva, this.priceWithIVA);
         }
-        console.log(input, value, this.priceBeforeIva, this.priceWithIVA);
+    };
+    HomePage.prototype.weedToast = function (message) {
+        var toast = this.toastCtrl.create({
+            message: message,
+            duration: 2000,
+            position: 'top',
+            showCloseButton: true,
+            closeButtonText: '<3'
+        });
+        toast.present();
+    };
+    HomePage.prototype.report = function () {
+        this.weedToast("Aguante el porro ");
     };
     HomePage.prototype.calculatePriceARS = function (input) {
-        var value = parseFloat(input);
-        if (isNaN(value)) {
-            this.priceARS = null;
-        }
-        else {
-            this.priceARS = (value + (30 * value) / 100).toFixed(2);
-        }
+    };
+    HomePage.prototype.setDolarValue = function () {
     };
     HomePage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-home',template:/*ion-inline-start:"/Users/diproach1/diproach/projects/misael/dollar30/src/pages/home/home.html"*/'<ion-header>\n  <ion-navbar>\n    <ion-title>\n      Calculadora de dolar + 30% \n    </ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content padding>\n  <ion-searchbar inputmode="numeric" style="color: white;" placeholder="Valor en USD" \n  (keyup.enter)="calculatePrice($event.target.value)"></ion-searchbar>\n  <ion-row>\n    <ion-col text-center>\n        <label *ngIf="priceWithIVA" for="">Precio SIN IVA</label>\n        <h4 *ngIf="priceBeforeIva" style="color: var(--ion-color-light); font-size: 8rem;">{{priceBeforeIva}}</h4>\n    </ion-col>\n  </ion-row>\n  <ion-row>\n    <ion-col text-center>\n        <label *ngIf="priceWithIVA" for="">Precio CON IVA</label>\n        <h5 *ngIf="priceWithIVA" style="color: var(--ion-color-light); font-size: 8rem;">{{priceWithIVA}}</h5>\n    </ion-col>\n  </ion-row>\n  <ion-searchbar style="color: white;" placeholder="Valor en ARS" \n  (keyup.enter)="calculatePriceARS($event.target.value)"></ion-searchbar>\n  <ion-row>\n    <ion-col text-center>\n        <label *ngIf="priceARS" for="">Precio en ARS con 30%</label>\n        <h4 *ngIf="priceARS" style="color: var(--ion-color-light); font-size: 8rem;">{{priceARS}}</h4>\n    </ion-col>\n  </ion-row>\n</ion-content>'/*ion-inline-end:"/Users/diproach1/diproach/projects/misael/dollar30/src/pages/home/home.html"*/,
+            selector: 'page-home',template:/*ion-inline-start:"/Users/diproach1/diproach/projects/misael/dollar30/src/pages/home/home.html"*/'<ion-header>\n  <ion-navbar>\n    <ion-toolbar>\n      <ion-row>\n        <ion-col col-5>\n        </ion-col>\n        <ion-col col-2 text-center class="header-img-container">\n          <img (click)="weedToast(\'droguita rica rica\')" src="../assets/imgs/mickey-joint.png">\n        </ion-col>\n        <ion-col col-5>\n          <ion-buttons end>\n            <button ion-button icon-only (click)="setDolarValue()">\n              <ion-icon color="light" name="settings"></ion-icon>\n            </button>\n          </ion-buttons>\n        </ion-col>\n      </ion-row>\n    </ion-toolbar>\n  </ion-navbar>\n</ion-header>\n\n<!-- SIN IVA -->\n<ion-content padding>\n  <ion-card  >\n    <ion-card-header text-center>\n      <h2 *ngIf="!priceWithIVA" style="font-weight: bold;">Dolar sin IVA</h2>  \n      <h2  *ngIf="priceWithIVA" style="font-weight: bold;">NO IVA</h2>\n    </ion-card-header>\n    <ion-card-content>\n      <ion-row>\n        <ion-col text-center>\n          <h4 *ngIf="!priceBeforeIva" class="class-ros">$ 0.00</h4>\n            <h4 *ngIf="priceBeforeIva" class="class-ros">$ {{priceBeforeIva}}</h4>\n        </ion-col>\n      </ion-row>\n    </ion-card-content>\n  </ion-card>\n\n<!-- CON IVA -->\n  <ion-card>\n    <ion-card-header text-center>\n      <h2 *ngIf="!priceWithIVA" style="font-weight: bold;">Dolar con IVA</h2>\n      <h2 *ngIf="priceWithIVA" style="font-weight: bold;">F*CKING IVA</h2>\n    </ion-card-header>\n    <ion-card-content>\n      <ion-row>\n        <ion-col text-center>\n          <h5 *ngIf="!priceWithIVA" class="class-ros">$ 0.00</h5>\n          <h5 *ngIf="priceWithIVA" class="class-ros">$ {{priceWithIVA}}</h5>\n        </ion-col>\n      </ion-row>\n    </ion-card-content>\n  </ion-card>\n\n<!-- PESOS -->\n\n\n  <ion-card>\n    <ion-card-header (click)="hideorshow()" [hidden]="hidden" text-center>\n      <h2 *ngIf="!priceARS" style="font-weight: bold;">Pesos con IVA</h2>\n      <h2 *ngIf="priceARS" style="font-weight: bold;">Pesos con IVA</h2>\n    </ion-card-header>\n    <ion-card-content>\n      <ion-row>\n        <ion-col text-center>\n          <h5 *ngIf="!priceARS" class="class-ros">$ 0.00</h5>\n          <h5 *ngIf="priceARS" class="class-ros">$ {{priceARS}}</h5>\n        </ion-col>\n      </ion-row>\n    </ion-card-content>\n  </ion-card>\n</ion-content>\n\n<ion-footer padding class="class-footer" no-border>\n  <ion-item style="border-radius: 30px;">\n    <ion-input class="input-money" type="number" placeholder="Valor en USD" (keyup.enter)="calculatePrice($event.target.value)">\n    </ion-input>\n    <ion-icon name="logo-usd" style="color: darkolivegreen;" item-left></ion-icon>\n\n  </ion-item>\n  <!-- <button *ngIf="!paymentMethodSelected" ion-button block disabled color="secondary" (click)="goToCongrats()">Confirmar</button> -->\n</ion-footer>\n'/*ion-inline-end:"/Users/diproach1/diproach/projects/misael/dollar30/src/pages/home/home.html"*/,
             providers: []
         }),
-        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* NavController */]) === "function" && _a || Object])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* NavController */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* ToastController */]])
     ], HomePage);
     return HomePage;
-    var _a;
 }());
 
 //# sourceMappingURL=home.js.map
