@@ -8,6 +8,7 @@ import { NavController, ToastController } from 'ionic-angular';
 export class HomePage {
   priceBeforeIva: any;
   priceWithIVA: any;
+  priceARS: string;
   constructor(
     public navCtrl: NavController,
     public toastCtrl: ToastController
@@ -36,4 +37,10 @@ export class HomePage {
     });
     toast.present();
   }
-}
+
+  
+    calculatePriceARS(input){
+      let value = parseFloat(input)
+      this.priceARS = (value + (30*value)/100).toFixed(2)
+    }
+  }
