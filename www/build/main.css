@@ -25695,3 +25695,50 @@ ion-navbar.toolbar {
   padding-bottom: 4px;
   min-height: 46px;
 }
+
+page-home .toolbar-md {
+  padding: 0px;
+  min-height: 56px;
+}
+
+page-home .toolbar-background-md {
+  border-color: #b2b2b2;
+  background: #1c2d0e;
+}
+
+page-home .content {
+  background-image: url("../assets/imgs/wallpaper.jpg");
+  -o-object-fit: cover;
+  object-fit: cover;
+}
+
+page-home .content .card-md {
+  margin: 10px;
+  border-radius: 10px;
+  width: calc(100% - 20px);
+  font-size: 1.4rem;
+  background: rgba(240, 238, 238, 0.932);
+  -webkit-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+}
+
+page-home .content .class-ros {
+  color: #1f7e1f;
+  font-size: 5rem;
+}
+
+page-home .header-img-container {
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+page-home .input-money {
+  color: black;
+  background-color: white;
+}
