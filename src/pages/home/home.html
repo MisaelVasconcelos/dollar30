@@ -5,12 +5,12 @@
         <ion-col col-5>
         </ion-col>
         <ion-col col-2 text-center class="header-img-container">
-          <img (click)="weedToast('droguita rica rica')" src="../assets/imgs/mickey-joint.png">
+          <img src="../assets/imgs/mickey-joint.png">
         </ion-col>
-        <ion-col col-5>
+        <ion-col text-center col-5>
           <ion-buttons end>
-            <button ion-button icon-only (click)="setDolarValue()">
-              <ion-icon color="light" name="settings"></ion-icon>
+            <button ion-button icon-only  (click)="openModal()">
+              <ion-icon color="light" name="help"></ion-icon>
             </button>
           </ion-buttons>
         </ion-col>
@@ -54,13 +54,15 @@
 
 <!-- PESOS -->
 
-
   <ion-card>
-    <ion-card-header (click)="hideorshow()" [hidden]="hidden" text-center>
-      <h2 *ngIf="!priceARS" style="font-weight: bold;">Pesos con IVA</h2>
-      <h2 *ngIf="priceARS" style="font-weight: bold;">Pesos con IVA</h2>
+    <ion-card-header (click)="hideorshow(true)" *ngIf="!hidden" text-center>
+      <h2 style="font-weight: bold;">Apreta para mostrar</h2>  
     </ion-card-header>
-    <ion-card-content>
+    <ion-card-header (click)="hideorshow(false)" *ngIf="hidden" text-center>
+      <h2 *ngIf="!priceARS" style="font-weight: bold;">Pesos con IVA</h2>
+      <h2 *ngIf="priceARS" style="font-weight: bold;">Pesos con IVA</h2>  
+    </ion-card-header>
+    <ion-card-content *ngIf="hidden" >
       <ion-row>
         <ion-col text-center>
           <h5 *ngIf="!priceARS" class="class-ros">$ 0.00</h5>

@@ -8,6 +8,8 @@ import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { HTTP } from '@ionic-native/http';
 import { HttpClientModule} from "@angular/common/http";
+import { BcraProvider } from '../providers/bcra/bcra';
+import { IonicStorageModule } from '@ionic/storage';
 
 @NgModule({
   declarations: [
@@ -18,6 +20,8 @@ import { HttpClientModule} from "@angular/common/http";
     BrowserModule,
     IonicModule.forRoot(MyApp),
     HttpClientModule,
+    IonicStorageModule.forRoot()
+
 
   ],
   bootstrap: [IonicApp],
@@ -31,6 +35,7 @@ import { HttpClientModule} from "@angular/common/http";
     InAppBrowser,
     HTTP,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
+    BcraProvider,
   ]
 })
 export class AppModule {}
